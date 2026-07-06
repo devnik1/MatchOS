@@ -12,234 +12,86 @@ import StorylineCard from '../../components/StorylineCard.astro';
 import TacticalCard from '../../components/TacticalCard.astro';
 
 export async function getStaticPaths() {
-  return [
-    { params: { slug: 'brazil-vs-germany' } },
-    { params: { slug: 'france-vs-spain' } },
-    { params: { slug: 'argentina-vs-brazil' } }
-  ];
+  return [{ params: { slug: 'spain-vs-portugal' } }];
 }
 
 const { slug } = Astro.params;
 const matches = {
-  'brazil-vs-germany': {
-    homeTeam: 'Brazil',
-    awayTeam: 'Germany',
-    homeFlag: '🇧🇷',
-    awayFlag: '🇩🇪',
-    homeRanking: 1,
-    awayRanking: 16,
-    date: '14 Jul 2026',
-    kickoff: '21:00',
-    stadium: 'MetLife Stadium',
-    competition: 'FIFA World Cup',
-    stage: 'Quarter-Final',
-    homeProbability: 58,
-    awayProbability: 42,
-    players: {
-      home: [
-        { number: 10, name: 'Vinícius Júnior', position: 'LW', rating: 8.9, stat: '5 goals in last 7' },
-        { number: 5, name: 'Casemiro', position: 'DM', rating: 8.1, stat: '92% pass accuracy' },
-        { number: 9, name: 'Endrick', position: 'ST', rating: 7.8, stat: '3 big chances created' }
-      ],
-      away: [
-        { number: 7, name: 'Florian Wirtz', position: 'AM', rating: 8.4, stat: '6 key passes' },
-        { number: 25, name: 'Antonio Rüdiger', position: 'CB', rating: 8.0, stat: '3.2 clearances per game' },
-        { number: 6, name: 'Joshua Kimmich', position: 'CM', rating: 8.3, stat: '7.4 recoveries' }
-      ]
-    },
-    matchups: [
-      { number: 10, name: 'Vinícius Júnior', position: 'LW', rating: 8.9, stat: '2.1 dribbles per game', explanation: 'His speed and balance could stretch Germany’s right side all night.' },
-      { number: 6, name: 'Joshua Kimmich', position: 'CM', rating: 8.3, stat: '7.4 recoveries', explanation: 'Kimmich’s positional discipline could choke Brazil’s central rhythm.' },
-      { number: 9, name: 'Endrick', position: 'ST', rating: 7.8, stat: '3 big chances created', explanation: 'A first-step burst against a high defensive line could decide the opening exchanges.' }
-    ],
-    h2h: {
-      overall: { wins: 11, draws: 4, losses: 8 },
-      lastFive: [
-        { date: '2018', score: '1-7', result: 'Loss' },
-        { date: '2014', score: '1-0', result: 'Win' },
-        { date: '2013', score: '3-2', result: 'Win' },
-        { date: '2012', score: '1-3', result: 'Loss' },
-        { date: '2010', score: '0-4', result: 'Loss' }
-      ],
-      tournaments: [
-        { date: '2014 World Cup', score: '1-0', result: 'Brazil win' },
-        { date: '2002 World Cup', score: '2-0', result: 'Brazil win' },
-        { date: '1998 World Cup', score: '3-0', result: 'Brazil win' }
-      ]
-    },
-    form: {
-      home: [
-        { opponent: 'Chile', ranking: 28, score: '3-1', result: 'Win' },
-        { opponent: 'Uruguay', ranking: 14, score: '2-0', result: 'Win' },
-        { opponent: 'Colombia', ranking: 13, score: '1-1', result: 'Draw' },
-        { opponent: 'Argentina', ranking: 2, score: '0-2', result: 'Loss' },
-        { opponent: 'Peru', ranking: 23, score: '4-0', result: 'Win' }
-      ],
-      away: [
-        { opponent: 'Hungary', ranking: 31, score: '2-0', result: 'Win' },
-        { opponent: 'Netherlands', ranking: 9, score: '2-1', result: 'Win' },
-        { opponent: 'Austria', ranking: 24, score: '1-1', result: 'Draw' },
-        { opponent: 'France', ranking: 4, score: '1-2', result: 'Loss' },
-        { opponent: 'Italy', ranking: 6, score: '3-1', result: 'Win' }
-      ]
-    },
-    storylines: [
-      'Brazil have won six straight matches entering this fixture.',
-      'Germany have scored first in every knockout match of the tournament so far.',
-      'This is the first World Cup meeting between the sides since 2014.'
-    ],
-    tactics: {
-      home: { formation: '4-3-3', playingStyle: 'High tempo', attackingStyle: 'Quick transitions', defensiveStyle: 'Mid-block', strengths: ['Wide overloads', 'Technical control'], weaknesses: ['Transitions after turnovers'] },
-      away: { formation: '4-2-3-1', playingStyle: 'Structured possession', attackingStyle: 'Cutback overloads', defensiveStyle: 'Low block', strengths: ['Compact shape', 'Set-piece threat'], weaknesses: ['Vulnerability in wide channels'] }
-    }
-  },
-  'france-vs-spain': {
-    homeTeam: 'France',
-    awayTeam: 'Spain',
-    homeFlag: '🇫🇷',
-    awayFlag: '🇪🇸',
-    homeRanking: 4,
-    awayRanking: 8,
+  'spain-vs-portugal': {
+    homeTeam: 'Spain',
+    awayTeam: 'Portugal',
+    homeFlag: '🇪🇸',
+    awayFlag: '🇵🇹',
+    homeRanking: 8,
+    awayRanking: 7,
     date: '15 Jul 2026',
     kickoff: '20:00',
     stadium: 'AT&T Stadium',
     competition: 'FIFA World Cup',
     stage: 'Semi-Final',
-    homeProbability: 54,
-    awayProbability: 46,
+    homeProbability: 55,
+    awayProbability: 45,
     players: {
       home: [
-        { number: 7, name: 'Antoine Griezmann', position: 'LW', rating: 8.5, stat: '4 goal involvements' },
-        { number: 8, name: 'Aurélien Tchouaméni', position: 'DM', rating: 8.2, stat: '7.1 recoveries' },
-        { number: 9, name: 'Kylian Mbappé', position: 'ST', rating: 9.0, stat: '5 goals in 6' }
-      ],
-      away: [
         { number: 10, name: 'Lamine Yamal', position: 'RW', rating: 8.8, stat: '3.4 successful dribbles' },
         { number: 16, name: 'Unai Simón', position: 'GK', rating: 8.0, stat: '84% save rate' },
         { number: 5, name: 'Pau Cubarsí', position: 'CB', rating: 8.1, stat: '3.0 clearances' }
+      ],
+      away: [
+        { number: 8, name: 'Bruno Fernandes', position: 'AM', rating: 8.6, stat: '4.2 key passes' },
+        { number: 26, name: 'Diogo Costa', position: 'GK', rating: 8.2, stat: '78% save rate' },
+        { number: 20, name: 'Vitinha', position: 'CM', rating: 8.3, stat: '91% pass accuracy' }
       ]
     },
     matchups: [
-      { number: 9, name: 'Kylian Mbappé', position: 'ST', rating: 9.0, stat: '5 goals in 6', explanation: 'Mbappé’s pace can punish Spain’s aggressive full-back runs.' },
-      { number: 10, name: 'Lamine Yamal', position: 'RW', rating: 8.8, stat: '3.4 successful dribbles', explanation: 'If Yamal gets isolated, France’s defensive balance could be exposed.' },
-      { number: 8, name: 'Aurélien Tchouaméni', position: 'DM', rating: 8.2, stat: '7.1 recoveries', explanation: 'Tchouaméni’s screening role will be crucial to containing Spain’s possession.' }
+      { number: 10, name: 'Lamine Yamal', position: 'RW', rating: 8.8, stat: '3.4 successful dribbles', explanation: 'Yamal’s pace could unsettle Portugal’s full-backs if Spain attack in transition.' },
+      { number: 8, name: 'Bruno Fernandes', position: 'AM', rating: 8.6, stat: '4.2 key passes', explanation: 'Fernandes can turn a tight game with one incisive pass into the box.' },
+      { number: 20, name: 'Vitinha', position: 'CM', rating: 8.3, stat: '91% pass accuracy', explanation: 'Vitinha’s circulation will be key to Spain’s pressing rhythm.' }
     ],
     h2h: {
-      overall: { wins: 8, draws: 3, losses: 5 },
+      overall: { wins: 7, draws: 5, losses: 4 },
       lastFive: [
-        { date: '2022', score: '2-1', result: 'France win' },
-        { date: '2014', score: '2-4', result: 'Spain win' },
-        { date: '2013', score: '0-1', result: 'Spain win' },
-        { date: '2012', score: '2-0', result: 'France win' },
-        { date: '2006', score: '3-1', result: 'France win' }
+        { date: '2022', score: '1-0', result: 'Spain win' },
+        { date: '2018', score: '2-3', result: 'Portugal win' },
+        { date: '2016', score: '0-0', result: 'Draw' },
+        { date: '2014', score: '0-1', result: 'Portugal win' },
+        { date: '2012', score: '1-2', result: 'Portugal win' }
       ],
       tournaments: [
-        { date: '2022 World Cup', score: '2-1', result: 'France win' },
-        { date: '2014 World Cup', score: '0-1', result: 'Germany beat France' },
-        { date: '2006 World Cup', score: '3-1', result: 'France win' }
+        { date: '2018 World Cup', score: '2-3', result: 'Portugal win' },
+        { date: '2012 Euro', score: '4-2', result: 'Spain win' },
+        { date: '2004 Euro', score: '0-1', result: 'Portugal win' }
       ]
     },
     form: {
       home: [
-        { opponent: 'Belgium', ranking: 3, score: '2-1', result: 'Win' },
+        { opponent: 'Germany', ranking: 16, score: '2-1', result: 'Win' },
+        { opponent: 'Italy', ranking: 6, score: '2-1', result: 'Win' },
         { opponent: 'England', ranking: 5, score: '2-1', result: 'Win' },
-        { opponent: 'Morocco', ranking: 11, score: '2-0', result: 'Win' },
-        { opponent: 'Netherlands', ranking: 9, score: '2-2', result: 'Draw' },
-        { opponent: 'Austria', ranking: 24, score: '4-1', result: 'Win' }
+        { opponent: 'France', ranking: 4, score: '2-2', result: 'Draw' },
+        { opponent: 'Netherlands', ranking: 9, score: '3-2', result: 'Win' }
       ],
       away: [
-        { opponent: 'Germany', ranking: 16, score: '3-1', result: 'Win' },
-        { opponent: 'Denmark', ranking: 20, score: '2-1', result: 'Win' },
-        { opponent: 'Italy', ranking: 6, score: '1-0', result: 'Win' },
-        { opponent: 'Portugal', ranking: 7, score: '2-2', result: 'Draw' },
-        { opponent: 'Sweden', ranking: 27, score: '2-1', result: 'Win' }
+        { opponent: 'Switzerland', ranking: 20, score: '2-1', result: 'Win' },
+        { opponent: 'Croatia', ranking: 10, score: '1-0', result: 'Win' },
+        { opponent: 'Slovenia', ranking: 24, score: '2-0', result: 'Win' },
+        { opponent: 'Denmark', ranking: 12, score: '2-1', result: 'Win' },
+        { opponent: 'Czechia', ranking: 18, score: '2-1', result: 'Win' }
       ]
     },
     storylines: [
-      'France have reached the last four with a ruthless defensive record.',
       'Spain have looked sharp in transition and have created overloads on the wings.',
-      'This fixture carries a fresh edge after the 2022 World Cup showdown.'
+      'Portugal carry dangerous individual quality in the final third.',
+      'This fixture promises a technical, high-intensity semifinal battle.'
     ],
     tactics: {
-      home: { formation: '4-2-3-1', playingStyle: 'Counter-attacking', attackingStyle: 'Direct wide play', defensiveStyle: 'Pressing', strengths: ['Pace in transition', 'Set-piece threat'], weaknesses: ['Vulnerability to possession'] },
-      away: { formation: '4-3-3', playingStyle: 'Position play', attackingStyle: 'Short passing', defensiveStyle: 'High line', strengths: ['Ball circulation', 'Wide overloads'], weaknesses: ['Space behind full-backs'] }
-    }
-  },
-  'argentina-vs-brazil': {
-    homeTeam: 'Argentina',
-    awayTeam: 'Brazil',
-    homeFlag: '🇦🇷',
-    awayFlag: '🇧🇷',
-    homeRanking: 2,
-    awayRanking: 1,
-    date: '18 Jul 2026',
-    kickoff: '19:30',
-    stadium: 'Maracanã',
-    competition: 'FIFA World Cup',
-    stage: 'Final',
-    homeProbability: 51,
-    awayProbability: 49,
-    players: {
-      home: [
-        { number: 10, name: 'Lionel Messi', position: 'AM', rating: 8.7, stat: '4 goal involvements' },
-        { number: 13, name: 'Cristian Romero', position: 'CB', rating: 8.3, stat: '3.1 clearances' },
-        { number: 11, name: 'Ángel Di María', position: 'RW', rating: 8.0, stat: '2.1 key passes' }
-      ],
-      away: [
-        { number: 10, name: 'Vinícius Júnior', position: 'LW', rating: 8.9, stat: '5 goals in last 7' },
-        { number: 5, name: 'Casemiro', position: 'DM', rating: 8.1, stat: '92% pass accuracy' },
-        { number: 9, name: 'Endrick', position: 'ST', rating: 7.8, stat: '3 big chances created' }
-      ]
-    },
-    matchups: [
-      { number: 10, name: 'Lionel Messi', position: 'AM', rating: 8.7, stat: '4 goal involvements', explanation: 'Messi’s relationship with the ball could define the final phase of the match.' },
-      { number: 5, name: 'Casemiro', position: 'DM', rating: 8.1, stat: '92% pass accuracy', explanation: 'Casemiro’s screening role will be vital if Argentina dominate the middle third.' },
-      { number: 13, name: 'Cristian Romero', position: 'CB', rating: 8.3, stat: '3.1 clearances', explanation: 'Romero’s aerial dominance could be decisive in a tense final.' }
-    ],
-    h2h: {
-      overall: { wins: 17, draws: 8, losses: 13 },
-      lastFive: [
-        { date: '2022', score: '0-2', result: 'Brazil win' },
-        { date: '2021', score: '1-0', result: 'Argentina win' },
-        { date: '2019', score: '0-2', result: 'Brazil win' },
-        { date: '2018', score: '0-0', result: 'Draw' },
-        { date: '2017', score: '1-1', result: 'Draw' }
-      ],
-      tournaments: [
-        { date: '2022 World Cup', score: '0-2', result: 'Brazil win' },
-        { date: '2014 World Cup', score: '1-0', result: 'Germany beat France' },
-        { date: '2005 Confederations Cup', score: '4-1', result: 'Brazil win' }
-      ]
-    },
-    form: {
-      home: [
-        { opponent: 'Uruguay', ranking: 14, score: '2-0', result: 'Win' },
-        { opponent: 'Paraguay', ranking: 32, score: '2-1', result: 'Win' },
-        { opponent: 'Colombia', ranking: 13, score: '1-1', result: 'Draw' },
-        { opponent: 'Chile', ranking: 28, score: '3-1', result: 'Win' },
-        { opponent: 'Peru', ranking: 23, score: '2-0', result: 'Win' }
-      ],
-      away: [
-        { opponent: 'Uruguay', ranking: 14, score: '2-0', result: 'Win' },
-        { opponent: 'Colombia', ranking: 13, score: '2-1', result: 'Win' },
-        { opponent: 'Argentina', ranking: 2, score: '0-2', result: 'Loss' },
-        { opponent: 'Chile', ranking: 28, score: '4-0', result: 'Win' },
-        { opponent: 'Paraguay', ranking: 32, score: '4-1', result: 'Win' }
-      ]
-    },
-    storylines: [
-      'Argentina arrive with a settled, experienced spine.',
-      'Brazil have looked dangerous in wide areas and through quick transitions.',
-      'This meeting will carry extra weight as a true heavyweight finale.'
-    ],
-    tactics: {
-      home: { formation: '4-3-3', playingStyle: 'Possession with purpose', attackingStyle: 'Central overloads', defensiveStyle: 'Pressing', strengths: ['Individual quality', 'Set-piece control'], weaknesses: ['Transition exposure'] },
-      away: { formation: '4-2-3-1', playingStyle: 'Counter-pressing', attackingStyle: 'Wide overloads', defensiveStyle: 'Mid-block', strengths: ['Physicality', 'Counter-attacks'], weaknesses: ['Defensive balance'] }
+      home: { formation: '4-3-3', playingStyle: 'Position play', attackingStyle: 'Short passing', defensiveStyle: 'High line', strengths: ['Ball circulation', 'Wide overloads'], weaknesses: ['Space behind full-backs'] },
+      away: { formation: '4-2-3-1', playingStyle: 'Counter-pressing', attackingStyle: 'Quick combinations', defensiveStyle: 'Mid-block', strengths: ['Individual quality', 'Set-piece threat'], weaknesses: ['Defensive balance'] }
     }
   }
 };
 
-const match = matches[slug as keyof typeof matches] || matches['brazil-vs-germany'];
+const match = matches[slug as keyof typeof matches] || matches['spain-vs-portugal'];
 ---
 
 <Layout title={`${match.homeTeam} vs ${match.awayTeam} — MatchIQ`}>
