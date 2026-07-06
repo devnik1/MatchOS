@@ -1,0 +1,22 @@
+---
+const { match } = Astro.props;
+---
+
+<div class="space-y-4">
+  <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-3">
+    <span class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Date</span>
+    <span class="font-semibold">{match.date}</span>
+  </div>
+  <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-3">
+    <span class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Kickoff</span>
+    <span class="font-semibold">{match.kickoff}</span>
+  </div>
+  <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-3">
+    <span class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Stadium</span>
+    <span class="font-semibold">{match.stadium}</span>
+  </div>
+  <div class="flex items-center justify-between">
+    <span class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Competition</span>
+    <span class="font-semibold">{match.competition}</span>
+  </div>
+</div>

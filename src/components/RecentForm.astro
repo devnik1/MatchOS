@@ -1,0 +1,38 @@
+---
+const { home, away, homeTeam, awayTeam } = Astro.props;
+---
+
+<section class="mb-10 rounded-[1.5rem] border border-[#f5f0e6]/20 bg-[#171717] p-6 sm:p-8">
+  <div class="mb-6">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#7fd8ff]">Recent form</p>
+    <h2 class="text-2xl font-black sm:text-3xl">How each side has looked lately</h2>
+  </div>
+  <div class="grid gap-6 lg:grid-cols-2">
+    <div>
+      <h3 class="mb-3 text-xl font-black">{homeTeam}</h3>
+      <div class="space-y-2">
+        {home.map((match) => (
+          <div class="flex items-center justify-between rounded-[1rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-3 text-sm">
+            <span>{match.opponent}</span>
+            <span class="text-[#b9b0a0]">#{match.ranking}</span>
+            <span class="font-semibold">{match.score}</span>
+            <span class="text-[#b9b0a0]">{match.result}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h3 class="mb-3 text-xl font-black">{awayTeam}</h3>
+      <div class="space-y-2">
+        {away.map((match) => (
+          <div class="flex items-center justify-between rounded-[1rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-3 text-sm">
+            <span>{match.opponent}</span>
+            <span class="text-[#b9b0a0]">#{match.ranking}</span>
+            <span class="font-semibold">{match.score}</span>
+            <span class="text-[#b9b0a0]">{match.result}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

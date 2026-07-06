@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@500;700;800;900&display=swap');
+
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #111111;
+  color: #f5f0e6;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Geist', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+code, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}

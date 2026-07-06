@@ -1,0 +1,15 @@
+---
+const { team, title, accent = 'border-[#f0c14b]' } = Astro.props;
+---
+
+<article class={`rounded-[1.5rem] border ${accent} bg-[#171717] p-6`}>
+  <h3 class="mb-4 text-xl font-black">{title}</h3>
+  <div class="space-y-3 text-sm">
+    <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-2"><span class="uppercase tracking-[0.2em] text-[#d8d0c1]">Formation</span><span class="font-semibold">{team.formation}</span></div>
+    <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-2"><span class="uppercase tracking-[0.2em] text-[#d8d0c1]">Playing style</span><span class="font-semibold">{team.playingStyle}</span></div>
+    <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-2"><span class="uppercase tracking-[0.2em] text-[#d8d0c1]">Attacking style</span><span class="font-semibold">{team.attackingStyle}</span></div>
+    <div class="flex items-center justify-between border-b border-[#f5f0e6]/10 pb-2"><span class="uppercase tracking-[0.2em] text-[#d8d0c1]">Defensive style</span><span class="font-semibold">{team.defensiveStyle}</span></div>
+    <div class="border-b border-[#f5f0e6]/10 pb-2"><p class="mb-1 uppercase tracking-[0.2em] text-[#d8d0c1]">Strengths</p><p class="font-semibold">{team.strengths.join(', ')}</p></div>
+    <div><p class="mb-1 uppercase tracking-[0.2em] text-[#d8d0c1]">Weaknesses</p><p class="font-semibold">{team.weaknesses.join(', ')}</p></div>
+  </div>
+</article>

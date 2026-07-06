@@ -1,0 +1,20 @@
+---
+const { home, away, homeTeam, awayTeam } = Astro.props;
+---
+
+<section class="mb-10 rounded-[1.5rem] border border-[#f5f0e6]/20 bg-[#171717] p-6 sm:p-8">
+  <div class="mb-6">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#7fd8ff]">Win probability</p>
+    <h2 class="text-2xl font-black sm:text-3xl">Who looks likelier to win?</h2>
+  </div>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] p-5">
+      <p class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">{homeTeam}</p>
+      <p class="mt-2 text-4xl font-black">{home}%</p>
+    </div>
+    <div class="rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] p-5">
+      <p class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">{awayTeam}</p>
+      <p class="mt-2 text-4xl font-black">{away}%</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MatchOS — Pre-Match Briefings</title>
+    <meta name="description" content="Premium pre-match football briefings for new fans." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="nav">
+        <a class="brand" href="index.html">MatchOS</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="match.html?fixture=spain-portugal">Preview</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">☀︎</button>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero card">
+          <div class="hero-copy">
+            <p class="eyebrow">Pre-match briefing</p>
+            <h1>Five minutes before kickoff. Everything you need to know.</h1>
+            <p>
+              MatchOS turns the biggest fixtures into premium editorial previews built for new fans.
+            </p>
+          </div>
+          <div class="hero-panel">
+            <p class="eyebrow">Tonight’s World Cup fixture</p>
+            <h2>Portugal vs Spain</h2>
+            <p>6 Jul 2026 · 00:30 IST · Round of 16</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Upcoming fixture</p>
+              <h2>Tonight’s match</h2>
+            </div>
+            <a href="match.html?fixture=spain-portugal">Open preview</a>
+          </div>
+
+          <div class="fixture-grid">
+            <a class="fixture-card" href="match.html?fixture=spain-portugal">
+              <div class="fixture-meta">
+                <span>Round of 16</span>
+                <span>⚽</span>
+              </div>
+              <div class="fixture-teams">
+                <div>
+                  <div class="flag">🇵🇹</div>
+                  <p>Portugal</p>
+                </div>
+                <div class="vs">VS</div>
+                <div>
+                  <div class="flag">🇪🇸</div>
+                  <p>Spain</p>
+                </div>
+              </div>
+              <div class="fixture-foot">
+                <p>6 Jul 2026</p>
+                <p>Kickoff 19:00</p>
+              </div>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>made for infinite human(s)</p>
+      </footer>
+    </div>
+
+    <script>
+      const themeToggle = document.querySelector('.theme-toggle');
+      const root = document.body;
+      const storedTheme = localStorage.getItem('matchiq-theme');
+      const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      const currentTheme = storedTheme || preferredTheme;
+
+      const setTheme = (theme) => {
+        root.setAttribute('data-theme', theme);
+        if (themeToggle) {
+          themeToggle.textContent = theme === 'light' ? '☾' : '☀︎';
+          themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+        localStorage.setItem('matchiq-theme', theme);
+      };
+
+      setTheme(currentTheme);
+      themeToggle?.addEventListener('click', () => {
+        const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        setTheme(nextTheme);
+      });
+    </script>
+  </body>
+</html>

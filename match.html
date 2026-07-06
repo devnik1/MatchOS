@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match Preview — MatchOS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="nav">
+        <a class="brand" href="index.html">MatchOS</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="match.html?fixture=spain-portugal">Preview</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">☀︎</button>
+        </div>
+      </nav>
+
+      <main id="match-root"></main>
+
+      <footer class="footer">
+        <p>made for infinite human(s)</p>
+      </footer>
+    </div>
+
+    <script src="match-data.js"></script>
+    <script>
+      const themeToggle = document.querySelector('.theme-toggle');
+      const bodyEl = document.body;
+      const storedTheme = localStorage.getItem('matchiq-theme');
+      const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      const currentTheme = storedTheme || preferredTheme;
+
+      const setTheme = (theme) => {
+        bodyEl.setAttribute('data-theme', theme);
+        if (themeToggle) {
+          themeToggle.textContent = theme === 'light' ? '☾' : '☀︎';
+          themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+        localStorage.setItem('matchiq-theme', theme);
+      };
+
+      setTheme(currentTheme);
+      themeToggle?.addEventListener('click', () => {
+        const nextTheme = bodyEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        setTheme(nextTheme);
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const fixtureKey = params.get('fixture') || 'spain-portugal';
+      const fixture = fixtures[fixtureKey];
+      const matchRoot = document.getElementById('match-root');
+
+      if (!fixture) {
+        console.error('Fixture not found for key:', fixtureKey, 'available:', Object.keys(fixtures || {}));
+        matchRoot.innerHTML = `<section class="card"><h1>Fixture not found.</h1><p>Available fixtures: ${Object.keys(fixtures || {}).join(', ')}</p></section>`;
+      } else {
+        matchRoot.innerHTML = `
+          <section class="card hero hero-preview">
+            <div>
+              <p class="eyebrow">${fixture.stage}</p>
+              <div class="teams-grid">
+                <div class="team-block">
+                  <div class="flag large">${fixture.homeFlag}</div>
+                  <h1>${fixture.homeTeam}</h1>
+                  <p>${fixture.homeRanking ? `FIFA #${fixture.homeRanking}` : 'FIFA rank unavailable'}</p>
+                </div>
+                <div class="vs-pill">VS</div>
+                <div class="team-block team-block-right">
+                  <div class="flag large">${fixture.awayFlag}</div>
+                  <h1>${fixture.awayTeam}</h1>
+                  <p>${fixture.awayRanking ? `FIFA #${fixture.awayRanking}` : 'FIFA rank unavailable'}</p>
+                </div>
+              </div>
+            </div>
+            <div class="hero-panel">
+              <div class="detail-row"><span>Date</span><strong>${fixture.date}</strong></div>
+              <div class="detail-row"><span>Kickoff</span><strong>${fixture.kickoff}</strong></div>
+              <div class="detail-row"><span>Venue</span><strong>${fixture.stadium}${fixture.city ? `, ${fixture.city}` : ''}</strong></div>
+              <div class="detail-row"><span>Competition</span><strong>${fixture.competition}</strong></div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Win probability</p>
+                <h2>Who looks likelier to win?</h2>
+              </div>
+            </div>
+            <div class="probability-grid">
+              <div class="prob-card">
+                <p>${fixture.homeTeam}</p>
+                <h3>${fixture.homeProbability}%</h3>
+              </div>
+              <div class="prob-card">
+                <p>${fixture.awayTeam}</p>
+                <h3>${fixture.awayProbability}%</h3>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Players to watch</p>
+                <h2>Six names to keep on your radar</h2>
+              </div>
+            </div>
+            <div class="two-col">
+              <div>
+                <h3>${fixture.homeTeam}</h3>
+                ${fixture.players.home.map(player => `
+                  <div class="list-row">
+                    <div>
+                      <p class="mini">#${player.number}</p>
+                      <strong>${player.name}</strong>
+                      <p>${player.position}</p>
+                    </div>
+                    <div class="right-align">
+                      <strong>${player.rating}</strong>
+                      <p>${player.stat}</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              <div>
+                <h3>${fixture.awayTeam}</h3>
+                ${fixture.players.away.map(player => `
+                  <div class="list-row">
+                    <div>
+                      <p class="mini">#${player.number}</p>
+                      <strong>${player.name}</strong>
+                      <p>${player.position}</p>
+                    </div>
+                    <div class="right-align">
+                      <strong>${player.rating}</strong>
+                      <p>${player.stat}</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Key matchups</p>
+                <h2>Three battles that could decide the game</h2>
+              </div>
+            </div>
+            <div class="matchup-grid">
+              ${fixture.matchups.map(matchup => `
+                <article class="matchup-card">
+                  <div class="list-row">
+                    <div>
+                      <p class="mini">#${matchup.number}</p>
+                      <strong>${matchup.name}</strong>
+                      <p>${matchup.position}</p>
+                    </div>
+                    <div class="right-align">
+                      <strong>${matchup.rating}</strong>
+                      <p>${matchup.stat}</p>
+                    </div>
+                  </div>
+                  <p>${matchup.explanation}</p>
+                </article>
+              `).join('')}
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Head-to-head</p>
+                <h2>The rivalry in context</h2>
+              </div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-box"><p>${fixture.homeTeam} wins</p><h3>${fixture.h2h.overall.wins}</h3></div>
+              <div class="stat-box"><p>Draws</p><h3>${fixture.h2h.overall.draws}</h3></div>
+              <div class="stat-box"><p>${fixture.awayTeam} wins</p><h3>${fixture.h2h.overall.losses}</h3></div>
+            </div>
+            <p class="h2h-note">Overall record between ${fixture.homeTeam} and ${fixture.awayTeam}.</p>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Recent form</p>
+                <h2>How each side has looked lately</h2>
+              </div>
+            </div>
+            <div class="two-col">
+              <div>
+                <h3>${fixture.homeTeam}</h3>
+                ${fixture.form.home.map(item => `
+                  <div class="list-row compact">
+                    <span>${item.opponent} <span class="rank-pill">(#${item.ranking})</span></span>
+                    <strong>${item.score}</strong>
+                    <span>${item.result}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <div>
+                <h3>${fixture.awayTeam}</h3>
+                ${fixture.form.away.map(item => `
+                  <div class="list-row compact">
+                    <span>${item.opponent} <span class="rank-pill">(#${item.ranking})</span></span>
+                    <strong>${item.score}</strong>
+                    <span>${item.result}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Storylines</p>
+                <h2>The narratives shaping the fixture</h2>
+              </div>
+            </div>
+            <div class="story-grid">
+              ${fixture.storylines.map(storyline => `<article class="story-card">“${storyline}”</article>`).join('')}
+            </div>
+          </section>
+        `;
+      }
+
+      const revealSections = () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+          document.querySelectorAll('.card').forEach((section) => section.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16 });
+
+        document.querySelectorAll('.card').forEach((section) => observer.observe(section));
+      };
+
+      window.addEventListener('load', revealSections);
+      window.addEventListener('resize', revealSections);
+    </script>
+  </body>
+</html>

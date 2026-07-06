@@ -1,0 +1,18 @@
+---
+const { matchup } = Astro.props;
+---
+
+<article class="rounded-[1.5rem] border border-[#f5f0e6]/20 bg-[#171717] p-5">
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <p class="text-xs uppercase tracking-[0.2em] text-[#d8d0c1]">#{matchup.number}</p>
+      <p class="mt-1 font-semibold">{matchup.name}</p>
+      <p class="text-sm text-[#b9b0a0]">{matchup.position}</p>
+    </div>
+    <div class="text-right">
+      <p class="font-black">{matchup.rating}</p>
+      <p class="text-sm text-[#b9b0a0]">{matchup.stat}</p>
+    </div>
+  </div>
+  <p class="text-sm text-[#d8d0c1]">{matchup.explanation}</p>
+</article>

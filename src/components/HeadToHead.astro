@@ -1,0 +1,50 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="mb-10 rounded-[1.5rem] border border-[#f5f0e6]/20 bg-[#171717] p-6 sm:p-8">
+  <div class="mb-6">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#f0c14b]">Head-to-head</p>
+    <h2 class="text-2xl font-black sm:text-3xl">The rivalry in context</h2>
+  </div>
+  <div class="mb-6 grid gap-4 md:grid-cols-3">
+    <div class="rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] p-5">
+      <p class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Wins</p>
+      <p class="mt-2 text-3xl font-black">{data.overall.wins}</p>
+    </div>
+    <div class="rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] p-5">
+      <p class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Draws</p>
+      <p class="mt-2 text-3xl font-black">{data.overall.draws}</p>
+    </div>
+    <div class="rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] p-5">
+      <p class="text-sm uppercase tracking-[0.2em] text-[#d8d0c1]">Losses</p>
+      <p class="mt-2 text-3xl font-black">{data.overall.losses}</p>
+    </div>
+  </div>
+  <div class="grid gap-6 lg:grid-cols-2">
+    <div>
+      <h3 class="mb-3 text-xl font-black">Last five meetings</h3>
+      <div class="space-y-2">
+        {data.lastFive.map((fixture) => (
+          <div class="flex items-center justify-between rounded-[1rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-3 text-sm">
+            <span>{fixture.date}</span>
+            <span class="font-semibold">{fixture.score}</span>
+            <span class="text-[#b9b0a0]">{fixture.result}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h3 class="mb-3 text-xl font-black">Major tournament meetings</h3>
+      <div class="space-y-2">
+        {data.tournaments.map((fixture) => (
+          <div class="flex items-center justify-between rounded-[1rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-3 text-sm">
+            <span>{fixture.date}</span>
+            <span class="font-semibold">{fixture.score}</span>
+            <span class="text-[#b9b0a0]">{fixture.result}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+const { home, away, homeTeam, awayTeam } = Astro.props;
+---
+
+<section class="mb-10 rounded-[1.5rem] border border-[#f5f0e6]/20 bg-[#171717] p-6 sm:p-8">
+  <div class="mb-6">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#ff6b6b]">Players to watch</p>
+    <h2 class="text-2xl font-black sm:text-3xl">Six names to keep on your radar</h2>
+  </div>
+  <div class="grid gap-6 lg:grid-cols-2">
+    <div>
+      <h3 class="mb-4 text-xl font-black">{homeTeam}</h3>
+      <div class="space-y-3">
+        {home.map((player) => (
+          <div class="flex items-center justify-between rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-[#d8d0c1]">#{player.number}</p>
+              <p class="font-semibold">{player.name}</p>
+              <p class="text-sm text-[#b9b0a0]">{player.position}</p>
+            </div>
+            <div class="text-right">
+              <p class="font-black">{player.rating}</p>
+              <p class="text-sm text-[#b9b0a0]">{player.stat}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h3 class="mb-4 text-xl font-black">{awayTeam}</h3>
+      <div class="space-y-3">
+        {away.map((player) => (
+          <div class="flex items-center justify-between rounded-[1.25rem] border border-[#f5f0e6]/10 bg-[#222222] px-4 py-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-[#d8d0c1]">#{player.number}</p>
+              <p class="font-semibold">{player.name}</p>
+              <p class="text-sm text-[#b9b0a0]">{player.position}</p>
+            </div>
+            <div class="text-right">
+              <p class="font-black">{player.rating}</p>
+              <p class="text-sm text-[#b9b0a0]">{player.stat}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
